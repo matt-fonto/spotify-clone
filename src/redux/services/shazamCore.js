@@ -3,9 +3,13 @@
 // 2. Once the data is successfully fetched, we can click in "Request Snippet"
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// createApi allows us to:
+// 1. set a reducerPath 
+// 2. 
 
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",
+  // since, all the API fetching will happen here, we pass the base url
   baseQuery: fetchBaseQuery({
     baseUrl: "https://shazam-core.p.rapidapi.com/v1", //base query, different end points will be added to it
     prepareHeaders: (headers) => {
@@ -19,9 +23,12 @@ export const shazamCoreApi = createApi({
     },
   }),
 
+  // and here, we pass all the other queries 
   endpoints: (builder) => ({
-    getTopCharts: builder.query({ query: () => "/charts/world" }),
+    getTopCharts: builder.query({ query: () => "/charts/world" }), //query one = Top charts
   }),
 });
 
+// then, we can export this hook to where we want to fetch the data 
+// to get the hoook, we need to go use{hookName}Query
 export const { useGetTopChartsQuery } = shazamCoreApi;

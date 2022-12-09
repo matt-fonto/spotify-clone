@@ -2,6 +2,7 @@ import { Error, Loader, SongCard } from "../components";
 import { genres } from "../assets/constants";
 import { useState } from "react";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useDispatch, useSelector } from "react-redux";
 
 const Discover = () => {
   // component responsible for:
@@ -10,19 +11,16 @@ const Discover = () => {
   // 3. parenting the Loader, the Error and the SongCard components
   // 4. passing the necessary props to the songCard component after having fetched the data
 
+  const dispatch = useDispatch();
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+
   const { data, isFetching, error } = useGetTopChartsQuery();
-  // we get 3 different things:
-  // 1. data = the actual result of the API call
-  // 2. isFetching = it shows it if it's loading
-  // 3. error = if an error has happened
 
   const [genreTitle, setGenreTitle] = useState("Rock");
 
   if (isFetching) return <Loader title="Loading songs..." />;
 
   if (error) return <Error />;
-
-  console.log(data);
 
   return (
     <div className="flex flex-col">
@@ -49,7 +47,15 @@ const Discover = () => {
       {/* the songs container */}
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song, i) => (
-          <SongCard key={song.key} song={song} i={i} />
+          <SongCard
+            key={song.key}
+            song={song}
+            i={i}
+            // we got these 2 props from the useSelector
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            data={data}
+          />
         ))}
       </div>
     </div>
