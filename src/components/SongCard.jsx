@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const SongCard = ({ song, isPlaying, activeSong, data }) => {
+const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   // component responsible for:
   // 1. rendering the songs data = coverart, title, subtitle
   // 2. setting dynamic values to the links, so we can access the song's page
-  // 3.
 
   const dispatch = useDispatch(); // initializing the dispatch
 

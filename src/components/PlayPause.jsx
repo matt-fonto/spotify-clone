@@ -3,7 +3,7 @@ import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
 const PlayPause = ({ song, isPlaying, activeSong, handlePause, handlePlay }) =>
   //component responsible for:
   //1. either rendering a play or pause icon based if we're or not listening to that song
-  //2.
+  //2. allow us to play or pause the song
 
   // if we're currently playing the song
   isPlaying && activeSong?.title === song.title ? (
