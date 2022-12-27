@@ -1,14 +1,10 @@
 import React from "react";
 
-const Track = ({ isPlaying, isActive, activeSong }) => (
+const Track = ({ activeSong }) => (
   // track's container
   <div className="flex-1 flex items-center justify-start">
     {/* spinning track's album */}
-    <div
-      className={`${
-        isPlaying && isActive ? "animate-[spin_5s_infinite]" : ""
-      } hidden sm:block h-16 w-16 mr-4`}
-    >
+    <div className="hidden sm:block h-16 w-16 mr-4">
       <img
         src={activeSong?.images?.coverart}
         alt="cover art"
