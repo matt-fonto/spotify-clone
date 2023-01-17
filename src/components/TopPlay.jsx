@@ -14,6 +14,10 @@ import TopChartCard from "./TopChartCard";
 import { useState } from "react";
 
 const TopPlay = () => {
+  //component responsible for:
+  //1.getting the data and dividing it into charts and artists
+  //2.rendering the topChart and topArtists
+
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data } = useGetTopChartsQuery();
@@ -24,7 +28,8 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({ behavior: "smooth" });
   });
 
-  const topPlays = data?.slice(0, 5); //an object with songs
+  const topCharts = data?.slice(0, 5); //an object with top 5 songs
+  const topArtists = data?.slice(0, 10); //object with top 10 artists
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -53,7 +58,7 @@ const TopPlay = () => {
 
         {/* TopChartCard Container */}
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, i) => {
+          {topCharts?.map((song, i) => {
             return (
               <TopChartCard
                 key={song.key}
@@ -88,7 +93,7 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays?.map((artist) => (
+          {topArtists?.map((artist) => (
             <SwiperSlide
               key={artist?.key}
               style={{ width: "20%", height: "auto" }}

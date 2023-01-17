@@ -4,8 +4,8 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // createApi allows us to:
-// 1. set a reducerPath 
-// 2. 
+// 1. set a reducerPath
+// 2. set a baseQuery = baseUrl + endpoints
 
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",
@@ -23,12 +23,22 @@ export const shazamCoreApi = createApi({
     },
   }),
 
-  // and here, we pass all the other queries 
+  // and here, we pass all the other queries
   endpoints: (builder) => ({
-    getTopCharts: builder.query({ query: () => "/charts/world" }), //query one = Top charts
+    getTopCharts: builder.query({ query: () => "/charts/world" }), //query 1 = Top charts
+    getSongDetails: builder.query({
+      query: ({ songid }) => `/tracks/details?track_id=${songid}`,
+    }), //query 2: Song Details
+    getSongRelated: builder.query({
+      query: ({ songId }) => `/tracks/related?track_id=${songId}`,
+    }),
   }),
 });
 
-// then, we can export this hook to where we want to fetch the data 
+// then, we can export this hook to where we want to fetch the data
 // to get the hoook, we need to go use{hookName}Query
-export const { useGetTopChartsQuery } = shazamCoreApi;
+export const {
+  useGetTopChartsQuery,
+  useGetSongDetailsQuery,
+  useGetSongRelatedQuery,
+} = shazamCoreApi;
