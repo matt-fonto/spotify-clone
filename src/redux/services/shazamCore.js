@@ -30,7 +30,7 @@ export const shazamCoreApi = createApi({
       query: ({ songid }) => `/tracks/details?track_id=${songid}`,
     }), //query 2: Song Details
     getSongRelated: builder.query({
-      query: ({ songId }) => `/tracks/related?track_id=${songId}`,
+      query: ({ songid }) => `/tracks/related?track_id=${songid}`, //query 3: Related Songs to our current page
     }),
   }),
 });
