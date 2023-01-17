@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 const DetailsHeader = ({ artistId, artistData, songData }) => {
-  const artist = artistData?.artist[artistId]?.attributes;
-
   // component container
   return (
     <div className="relative w-full flex flex-col">
@@ -12,19 +10,21 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
       {/* Details Info */}
       <div className="absolute inset-0 flex items-center">
         <img
+          alt="art"
           src={
             artistId
-              ? artist.artwork?.url.replace("{w}", "500").replace("{h}", "500")
+              ? artistData?.attributes?.artwork?.url
+                  .replace("{w}", "500")
+                  .replace("{h}", "500")
               : songData?.images?.coverart
           }
-          alt="art"
           className="sm:w-28 w-20 sm:h-28 h-20 rounded-xl object-cover ml-5"
         />
 
         {/* Text Info */}
         <div className="ml-5">
           <p className="text-white font-bold sm:text-3xl text-xl">
-            {artistId ? artist?.name : songData?.title}
+            {artistId ? artistData?.attributes?.name : songData?.title}
           </p>
           {!artistId && (
             <Link to={`artists/${songData?.artists[0].adamid}`}>
@@ -33,12 +33,12 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
           )}
 
           <p className="text-base text-teal-600 mt-2">
-            {artistId ? artist?.genreNames[0] : songData?.genres?.primary}
+            {artistId
+              ? artistData?.attributes?.genreNames[0]
+              : songData?.genres?.primary}
           </p>
         </div>
       </div>
-
-      {/* <div className="w-full sm:h-44 h-24" /> */}
     </div>
   );
 };
