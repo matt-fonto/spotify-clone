@@ -6,7 +6,7 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
 
 const NavLinks = ({ handleClick }) => (
-  <div className="mt-10 ">
+  <div className="">
     {links.map((item) => (
       // imported from React Router
       <NavLink
@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <>
       {/* navigation wrapper */}
-      <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-neutral-900/90">
+      <div className="md:flex hidden flex-col w-[240px] py-10 px-4 pt-20 bg-neutral-900/95">
         <img src={logo} alt="logo" className="w-full h-14 object-contain" />
         <NavLinks />
       </div>
