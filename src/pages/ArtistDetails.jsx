@@ -19,8 +19,6 @@ const ArtistDetails = () => {
 
   if (error) return <Error />;
 
-  console.log(artistData?.data[0]);
-
   return (
     <div className="flex flex-col">
       <DetailsHeader artistId={artistId} artistData={artistData?.data[0]} />

@@ -23,7 +23,6 @@ const TopChartCard = ({
       <div className="flex-1 flex flex-row justify-between items-center ">
         <img
           src={song?.images?.coverart}
-          onClick={() => console.log(song)}
           alt={song?.title}
           className="w-20 h-20 rounded-lg"
         />

@@ -13,7 +13,7 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="min-h-[80px] flex items-center mt-8">
+    <div className="min-h-[80px] flex items-center">
       <form
         autoComplete="off"
         className="p-2 text-gray-400 focus-within:text-gray-600"
