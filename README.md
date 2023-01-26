@@ -25,4 +25,5 @@ The user is able to:
 * Rapid API for providing the data 
 * Netlify to host the app
 
-The final project can be accessed on:
+The final project can be accessed on: 
+https://symphonious-llama-c71fdb.netlify.app
